@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> fragments/html_header}}
+
+<body>
+
+    {{> fragments/top_bar}}
+
+    {{> fragments/banner}}
+
+    {{> fragments/no_content_message}}
+
+    <h1 class="list-title">Trending Movies</h1>
+    <div class="trending-container">
+        <div class="horizontal_movies_container"> 
+            {{#trendingMovies}}
+                {{> fragments/horizontal_container_movie_card}}
+            {{/trendingMovies}}
+        </div>
+        {{^trendingMovies}}
+            <p class="grey-background text-center">No trending movies found.</p>
+        {{/trendingMovies}}
+    </div>
+
+   {{#genreSections}}
+       <h1 class="list-title">Top in {{genreName}}</h1>
+       <div class="trending-container">
+           <div class="horizontal_movies_container">
+               {{#movies}}
+                   {{> fragments/horizontal_container_movie_card}}
+               {{/movies}}
+           </div>
+       </div>
+   {{/genreSections}}
+
+</body>
+
+</html>

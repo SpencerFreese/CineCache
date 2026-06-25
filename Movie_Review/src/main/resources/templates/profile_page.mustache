@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> fragments/html_header}}
+
+<body>
+
+    {{> fragments/top_bar}}
+
+    {{#profile}}
+        <div class="profile-container">
+            <div>
+                {{#isCurrentUserProfile}}
+                    <h1>My List</h1>
+                {{/isCurrentUserProfile}}
+
+                {{^isCurrentUserProfile}}
+                    <h1>{{userName}}'s List</h1>
+                {{/isCurrentUserProfile}}
+                {{> fragments/movie_cards_container}}
+
+                {{^movies}}
+                    <p class="grey-background text-center">No Movies</p>
+                {{/movies}}
+            </div>
+
+            <div>
+                <h1>My Reviews</h1>
+                {{#reviews.0}}
+                    {{> fragments/detailed_movie_review}}
+                {{/reviews.0}}
+                
+                {{^reviews.0}}
+                    <p class="text-center">No Reviews</p>
+                {{/reviews.0}}
+            </div>
+        </div>
+    {{/profile}}
+
+</body>
+
+</html>

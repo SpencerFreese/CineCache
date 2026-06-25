@@ -1,0 +1,36 @@
+<div class="review-form">
+    {{#review}}
+        <form method="post" action="/movies/{{movieId}}/reviews/{{reviewId}}/update">
+
+            <div class="review-form-stars">
+                <label>Rating: </label>
+                
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5" {{#rating5.0}}checked{{/rating5.0}} /><label for="star5" title="5 stars"></label>
+                    
+                    <input type="radio" id="star4half" name="rating" value="4.5" {{#rating4.5}}checked{{/rating4.5}} /><label class="half" for="star4half"></label>
+                    
+                    <input type="radio" id="star4" name="rating" value="4" {{#rating4.0}}checked{{/rating4.0}} /><label for="star4"></label>
+                    
+                    <input type="radio" id="star3half" name="rating" value="3.5" {{#rating3.5}}checked{{/rating3.5}} /><label class="half" for="star3half"></label>
+                    
+                    <input type="radio" id="star3" name="rating" value="3" {{#rating3.0}}checked{{/rating3.0}} /><label for="star3"></label>
+
+                    <input type="radio" id="star2half" name="rating" value="2.5" {{#rating2.5}}checked{{/rating2.5}} /><label class="half" for="star2half"></label>
+                    
+                    <input type="radio" id="star2" name="rating" value="2" {{#rating2.0}}checked{{/rating2.0}} /><label for="star2"></label>
+
+                    <input type="radio" id="star1half" name="rating" value="1.5" {{#rating1.5}}checked{{/rating1.5}} /><label class="half" for="star1half"></label>
+                    
+                    <input type="radio" id="star1" name="rating" value="1" {{#rating1.0}}checked{{/rating1.0}} /><label class="whole fa fa-star" for="star1"></label>
+                
+                </div>
+
+            </div>
+
+            <textarea required name="content" class="framed" placeholder="Express your thoughts about this movie!">{{content}}</textarea>
+            <input type="hidden" name="reviewId" value="{{review.reviewId}}">
+            <button type="submit" class="action-button">Update Review</button>
+        </form>
+    {{/review}}
+</div>

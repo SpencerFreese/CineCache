@@ -1,0 +1,27 @@
+<div class="review-card">
+    <div class="review-header">
+        <div class="review-user-info">
+            <h3><a href="/profile/{{userId}}">{{userName}}</a></h3>
+            <div class="star-rating existing-review">
+                {{#reviewStars}}
+                    <i class="fa {{.}} checked"></i>
+                {{/reviewStars}}
+                <span class="rating-number">{{rating}}</span>
+            </div>
+        </div>
+        <p class="review-date">{{postDate}}</p>
+    </div>
+
+    <p class="review-content">{{content}}</p>
+    
+    {{#isUserReview}}
+        <div class="review-controls">
+            <form method="get" action="/movies/{{movieId}}/reviews/{{reviewId}}/edit">
+                <button class="fa fa-pencil-square-o"></button>
+            </form>
+            <form method="POST" action="/movies/{{movieId}}/reviews/{{reviewId}}/delete">
+                <button class="fa fa-trash"></button>
+            </form>
+        </div>
+    {{/isUserReview}}
+</div>

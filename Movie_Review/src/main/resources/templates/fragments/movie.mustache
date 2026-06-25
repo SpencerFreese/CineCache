@@ -1,0 +1,104 @@
+<div class="detailed-movie-container">
+    <div class="movie-card-column">
+        <div class="movie-card framed">
+            <img src="{{poster}}" alt="{{title}}">
+        </div>
+        
+        {{#isListed}}
+            <form method="get" action="/movies/{{movieId}}/list/false">
+                <button class="action-button full-width">
+                    Remove from List
+                </button>
+            </form>
+        {{/isListed}}
+        </form>
+        {{^isListed}}
+            <form method="get" action="/movies/{{movieId}}/list/true">
+                <button class="action-button full-width">
+                    Add to List
+                </button>
+            </form>
+        {{/isListed}}
+    </div>
+
+    <div class="movie-info">
+        <h1>{{title}}</h1>
+        {{#showOgTitle}}
+            <h6 class="original-title">{{original_title}} ({{original_language}})</h6>
+        {{/showOgTitle}}
+
+        <div class="rating-display">
+            <span class="rating-label" style="font-size: 0.8rem; color: #888; width: 50px;">TMDB:</span>
+            {{#imdb_star_classes}}
+                <i class="fa {{.}}"></i>
+            {{/imdb_star_classes}}
+            <span class="rating-value">{{vote_average}}</span>
+            <span class="vote-count">({{vote_count}} votes)</span>
+        </div>
+
+        <div class="rating-display">
+            <span class="rating-label" style="font-size: 0.8rem; color: #888; width: 50px;">Users:</span>
+            {{#avg_rating_star_classes}}
+                <i class="fa {{.}}"></i>
+            {{/avg_rating_star_classes}}
+            <span class="rating-value">{{avg_rating}}</span>
+        </div>
+
+        <div class="movie-metadata">
+            <span><i class="fa fa-calendar"></i> {{release_date}}</span>
+            <span><i class="fa fa-clock-o"></i> {{hours}}h {{minutes}}m</span>
+        </div>
+
+        <p class="movie-overview">{{overview}}</p>
+        <i class="movie-tagline">"{{tagline}}"</i>
+
+        <div class="financials">
+            <div class="stat-box">
+                <label>Budget</label>
+                <p>${{formatted_budget}}</p>
+            </div>
+            <div class="stat-box">
+                <label>Revenue</label>
+                <p>${{formatted_revenue}}</p>
+            </div>
+        </div>
+
+        <div class="cloud-wrapper">
+            <div class="genres cloud">
+                <h3>Genres</h3>
+                {{#genres}}
+                    <span class="genre-tag">{{.}}</span>
+                {{/genres}}
+            </div>
+        </div>
+
+        <div class="cloud-wrapper" style="margin-top: 15px;">
+            <div class="companies cloud">
+                <h3>Production</h3>
+                {{#productionCompanies}}
+                    <span class="company-tag">{{.}}</span>
+                {{/productionCompanies}}
+            </div>
+        </div>
+    </div>
+
+    <div class="reviews-container">
+        <h3>User Reviews</h3>
+        {{^reviewMadeByUser}}
+            {{> fragments/new_review_form}}
+        {{/reviewMadeByUser}}
+        
+        <div class="snap-reviews-container">
+            {{#reviewMadeByUser}}
+                {{> fragments/review}}
+            {{/reviewMadeByUser}}
+
+            {{#reviewsMadeByOthers}}
+                {{> fragments/review}}
+            {{/reviewsMadeByOthers}}
+            {{^reviewsMadeByOthers}}
+                <p class="grey-background text-center">No Reviews</p>
+            {{/reviewsMadeByOthers}}
+        </div>
+    </div>
+</div>
